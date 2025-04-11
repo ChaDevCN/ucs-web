@@ -1,0 +1,163 @@
+.row-odd {
+	background-color: #fafafa;
+}
+
+.row-even {
+	background-color: #ffffff;
+}
+
+.ant-table-thead {
+	background-color: #f5f7fa !important;
+	
+	.ant-table-cell {
+		font-weight: 600;
+		color: #1f2937;
+		padding: 16px 8px;
+	}
+}
+
+.ant-table-cell {
+	padding: 12px 8px;
+	transition: all 0.3s ease;
+}
+
+.ant-table-cell-row-hover {
+	background-color: #f3f4f6 !important;
+	color: #1f2937;
+	border-bottom: 1px solid #e5e7eb !important;
+}
+
+.ant-table-cell-row-hover .ant-dropdown-trigger {
+	color: #4f46e5;
+}
+
+
+
+.ant-dropdown-trigger {
+	cursor: pointer;
+	padding: 4px;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+	
+	&:hover {
+		background-color: #f3f4f6;
+	}
+}
+
+.ant-card {
+	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+	border-radius: 8px;
+	
+	.ant-card-body {
+		padding: 24px;
+	}
+}
+
+.ant-table {
+	border-radius: 8px;
+	overflow: hidden;
+	
+	.ant-table-container {
+		border: 1px solid #e5e7eb;
+	}
+}
+
+
+.dark {
+	.row-odd {
+		background-color: rgba(255, 255, 255, 0.02);
+	}
+	
+	.row-even {
+		background-color: rgba(255, 255, 255, 0.04);
+	}
+	
+	.ant-table-thead {
+		background-color: rgba(255, 255, 255, 0.06) !important;
+		
+		.ant-table-cell {
+			font-weight: 600;
+			color: rgba(255, 255, 255, 0.85);
+			padding: 16px 8px;
+		}
+	}
+	
+	.ant-table-cell {
+		padding: 12px 8px;
+		transition: all 0.3s ease;
+		color: rgba(255, 255, 255, 0.85);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+	}
+	
+	.ant-table-cell-row-hover {
+		background-color: rgba(255, 255, 255, 0.08) !important;
+		color: rgba(255, 255, 255, 0.85);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+	}
+	
+	.ant-table-cell-row-hover .ant-dropdown-trigger {
+		color: #4f46e5;
+	}
+	
+
+	
+	.ant-dropdown-trigger {
+		cursor: pointer;
+		padding: 4px;
+		border-radius: 4px;
+		transition: all 0.2s ease;
+		
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.08);
+		}
+	}
+	
+	.ant-card {
+		background-color: rgba(255, 255, 255, 0.02);
+		box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px -1px rgba(0, 0, 0, 0.3);
+		border-radius: 8px;
+		border: 1px solid rgba(255, 255, 255, 0.06);
+		
+		.ant-card-body {
+			padding: 24px;
+		}
+	}
+	
+	.ant-table {
+		border-radius: 8px;
+		overflow: hidden;
+		background-color: transparent;
+		
+		.ant-table-container {
+			border: 1px solid rgba(255, 255, 255, 0.06);
+		}
+	}
+	
+
+	
+	// 下拉菜单样式
+	.ant-dropdown {
+		.ant-dropdown-menu {
+			background-color: rgba(30, 41, 59, 0.95);
+			border: 1px solid rgba(255, 255, 255, 0.06);
+			backdrop-filter: blur(8px);
+			
+			.ant-dropdown-menu-item {
+				color: rgba(255, 255, 255, 0.85);
+				
+				&:hover {
+					background-color: rgba(255, 255, 255, 0.08);
+				}
+				
+				&.ant-dropdown-menu-item-danger {
+					color: #ef4444;
+					
+					&:hover {
+						background-color: rgba(239, 68, 68, 0.1);
+					}
+				}
+			}
+		}
+	}
+	
+}
