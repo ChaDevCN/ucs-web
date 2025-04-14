@@ -1,5 +1,7 @@
 import { useRef, useState } from 'react';
+import { CSVLink } from 'react-csv';
 
+import { DownOutlined } from '@ant-design/icons';
 import {
 	ProTable,
 	ProColumns,
@@ -34,11 +36,11 @@ import {
 	type MaintenanceDrawerType,
 	TooltipText
 } from './service';
-
 const maintenance = () => {
 	const activeItem = useRef<MaintenanceDrawerType | null>(null);
 	const [visibleDrawer, setVisibleDrawer] = useState(false);
 	const [filterParams, setFilterParams] = useState<any>({});
+	const [list, setList] = useState<Maintenance[]>([]);
 	const actionRef = useRef<ActionType>(null);
 
 	const handleOpenDrawer = () => {
@@ -59,18 +61,18 @@ const maintenance = () => {
 		}
 	);
 	const items: MenuProps['items'] = [
-		{
-			key: '1',
-			label: '编辑',
-			icon: <Edit size={16} />,
-			onClick: () => {
-				handleOpenDrawer();
-				activeItem.current = {
-					id: activeItem.current?.id as number,
-					type: 'edit'
-				};
-			}
-		},
+		// {
+		// 	key: '1',
+		// 	label: '编辑',
+		// 	icon: <Edit size={16} />,
+		// 	onClick: () => {
+		// 		handleOpenDrawer();
+		// 		activeItem.current = {
+		// 			id: activeItem.current?.id as number,
+		// 			type: 'edit'
+		// 		};
+		// 	}
+		// },
 		{
 			key: '2',
 			label: '查看',
@@ -124,21 +126,21 @@ const maintenance = () => {
 			align: 'center',
 			render: (text) => <TooltipText text={text} />
 		},
-		{
-			title: '状态',
-			dataIndex: 'status',
-			align: 'center',
-			width: 120,
-			render: (text) =>
-				text && typeof text === 'number' ? (
-					<Badge
-						color={statusMap[text as keyof typeof statusMap].color}
-						text={statusMap[text as keyof typeof statusMap].label}
-					/>
-				) : (
-					'-'
-				)
-		},
+		// {
+		// 	title: '状态',
+		// 	dataIndex: 'status',
+		// 	align: 'center',
+		// 	width: 120,
+		// 	render: (text) =>
+		// 		text && typeof text === 'number' ? (
+		// 			<Badge
+		// 				color={statusMap[text as keyof typeof statusMap].color}
+		// 				text={statusMap[text as keyof typeof statusMap].label}
+		// 			/>
+		// 		) : (
+		// 			'-'
+		// 		)
+		// },
 		{
 			title: '创建时间',
 			dataIndex: 'createdAt',
@@ -200,17 +202,6 @@ const maintenance = () => {
 				>
 					<ProFormGroup>
 						<ProFormSelect
-							label="状态"
-							name="status"
-							options={Object.keys(statusMap).map((key) => ({
-								label: statusMap[+key as keyof typeof statusMap].label,
-								value: +key
-							}))}
-							initialValue={filterParams.status}
-						></ProFormSelect>
-					</ProFormGroup>
-					<ProFormGroup>
-						<ProFormSelect
 							label="区域"
 							name="region"
 							options={regionMap.map((item) => ({
@@ -233,8 +224,24 @@ const maintenance = () => {
 				arrow
 				color="white"
 			>
-				<Button type="primary">筛选</Button>
+				<Button>筛选</Button>
 			</Tooltip>
+			<CSVLink
+				data={list || []}
+				headers={
+					columns
+						.map((item) => ({
+							label: item.title,
+							key: item.dataIndex
+						}))
+						.splice(0, columns.length - 1) as any
+				}
+				filename="全球维保.csv"
+			>
+				<Button type="primary" icon={<DownOutlined />}>
+					导出数据
+				</Button>
+			</CSVLink>
 		</Space>
 	);
 	return (
@@ -260,6 +267,15 @@ const maintenance = () => {
 						}),
 						200
 					);
+					setList(() => {
+						const nextList = [...res.data.list];
+						return nextList.map((item: any) => ({
+							...item,
+							createdAt: dayjs(item.createdAt as number).format(
+								'YYYY-MM-DD HH:mm:ss'
+							)
+						}));
+					});
 					return {
 						...res,
 						data: res.data.list,

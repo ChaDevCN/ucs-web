@@ -3,6 +3,7 @@ import * as path from 'path';
 import { defineConfig } from '@rsbuild/core';
 import { pluginLess } from '@rsbuild/plugin-less';
 import { pluginReact } from '@rsbuild/plugin-react';
+import CompressionPlugin from "compression-webpack-plugin";
 const rootDirname = path.resolve(__dirname, '../../');
 const { PUBLIC_GOOGLE_CLIENT_ID, BASE_URL } = import.meta.env;
 const isProd = process.env.NODE_ENV === 'production';
@@ -24,10 +25,11 @@ export default defineConfig({
 		},
 		proxy: {
 			'/api/v1': {
-				target: 'http://localhost:3031',
+				target: 'https://usc.aixdb.cn',
 				changeOrigin: true
 			}
-		}
+		},
+		compress: true,
 	},
 	source: {
 		define: {
@@ -49,6 +51,11 @@ export default defineConfig({
 				'@ant-design/pro-components': /node_modules[\\/]@ant-design/,
 				'@ant-design/icons': /node_modules[\\/]@ant-design\/icons/
 			}
+		}
+	},
+	tools: {
+		rspack: {
+		  plugins: [new CompressionPlugin({})]
 		}
 	}
 });

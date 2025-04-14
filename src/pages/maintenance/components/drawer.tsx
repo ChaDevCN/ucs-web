@@ -41,22 +41,22 @@ const LookDrawer = ({ id, data }: { id: number; data: Maintenance }) => {
 			children: data?.region || '-',
 			span: 'filled'
 		},
-		{
-			label: '状态',
-			span: 'filled',
-			children: (
-				<>
-					{data?.status ? (
-						<Badge
-							color={statusMap[data?.status as keyof typeof statusMap].color}
-							text={statusMap[data?.status as keyof typeof statusMap].label}
-						/>
-					) : (
-						'-'
-					)}
-				</>
-			)
-		},
+		// {
+		// 	label: '状态',
+		// 	span: 'filled',
+		// 	children: (
+		// 		<>
+		// 			{data?.status ? (
+		// 				<Badge
+		// 					color={statusMap[data?.status as keyof typeof statusMap].color}
+		// 					text={statusMap[data?.status as keyof typeof statusMap].label}
+		// 				/>
+		// 			) : (
+		// 				'-'
+		// 			)}
+		// 		</>
+		// 	)
+		// },
 		{
 			label: '描述',
 			children: (
@@ -154,7 +154,7 @@ const EditDrawer = ({
 					initialValue={data?.region}
 				></ProFormSelect>
 			</ProForm.Group>
-			<ProForm.Group>
+			{/* <ProForm.Group>
 				<ProFormSelect
 					label="状态"
 					name="status"
@@ -164,7 +164,7 @@ const EditDrawer = ({
 					}))}
 					initialValue={data?.status || null}
 				></ProFormSelect>
-			</ProForm.Group>
+			</ProForm.Group> */}
 			<ProForm.Group>
 				<ProFormTextArea
 					label="描述"
