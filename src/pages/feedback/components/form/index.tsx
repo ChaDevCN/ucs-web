@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import {
 	ProForm,
@@ -22,6 +22,9 @@ import {
 import { useWidth } from '@/hooks/use-width';
 const formWidth = 'md';
 export const Index = () => {
+	const [searchParams] = useSearchParams();
+	const type = searchParams.get('type') === 'look';
+
 	const { id } = useParams();
 	const { isMobile } = useWidth();
 	const navigate = useNavigate();
@@ -79,6 +82,7 @@ export const Index = () => {
 		<Card className="max-h-full overflow-y-auto" title={config.title}>
 			<ProForm
 				onFinish={onFinish}
+				readonly={type}
 				onFinishFailed={onError}
 				className="[&>div:last-child]:justify-end"
 				form={form}
