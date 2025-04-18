@@ -3,6 +3,7 @@ import { Drawer } from 'antd';
 
 import SlideMenu from './menu';
 
+import logo from '@/assets/images/logo.png';
 import { usePCScreen } from '@/hooks/use-pc-screen';
 import { useGlobalStore } from '@/stores/global';
 
@@ -35,7 +36,9 @@ const Slide = () => {
 						className="flex items-center gap-[4px] text-[20px] justify-center"
 						style={{ width: 220 }}
 					>
-						<h1 className="font-bold text-[22px]">aixdb</h1>
+						<h1 className="font-bold text-[22px]">
+							<img alt="logo" src={logo} />
+						</h1>
 					</div>
 				}
 				styles={{
