@@ -13,7 +13,7 @@ function SlideMenu() {
 	const { collapsed, darkMode } = useGlobalStore();
 	const { currentUser } = useUserStore();
 	const matches = useMatches();
-	const menuDatas = currentUser?.menus;
+	const menuDatas = currentUser?.combined.menus;
 	const [openKeys, setOpenKeys] = useState<string[]>([]);
 	const [selectKeys, setSelectKeys] = useState<string[]>([]);
 

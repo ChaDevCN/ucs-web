@@ -3,9 +3,9 @@ import * as path from 'path';
 import { defineConfig } from '@rsbuild/core';
 import { pluginLess } from '@rsbuild/plugin-less';
 import { pluginReact } from '@rsbuild/plugin-react';
-import CompressionPlugin from "compression-webpack-plugin";
+import CompressionPlugin from 'compression-webpack-plugin';
 const rootDirname = path.resolve(__dirname, '../../');
-const { PUBLIC_GOOGLE_CLIENT_ID, BASE_URL } = import.meta.env;
+const { PUBLIC_GOOGLE_CLIENT_ID, BASE_URL } = (import.meta as any).env;
 const isProd = process.env.NODE_ENV === 'production';
 
 export default defineConfig({
@@ -25,11 +25,11 @@ export default defineConfig({
 		},
 		proxy: {
 			'/api/v1': {
-				target: 'https://usc.aixdb.cn',
+				target: process.env.PROXY_URL,
 				changeOrigin: true
 			}
 		},
-		compress: true,
+		compress: true
 	},
 	source: {
 		define: {
@@ -38,6 +38,7 @@ export default defineConfig({
 		}
 	},
 	performance: {
+		// bundleAnalyze: {},
 		removeConsole: isProd ? true : undefined,
 		chunkSplit: {
 			strategy: 'split-by-experience',
@@ -47,15 +48,14 @@ export default defineConfig({
 				'react-dom': /node_modules[\\/]react-dom/,
 				'react-router': /node_modules[\\/]react-router/,
 				'react-router-dom': /node_modules[\\/]react-router-dom/,
-				lexical: /node_modules[\\/]lexical/,
-				'@ant-design/pro-components': /node_modules[\\/]@ant-design/,
-				'@ant-design/icons': /node_modules[\\/]@ant-design\/icons/
+				lexical: /node_modules[\\/]lexical|node_modules[\\/]@lexical/,
+				'@ant-design/pro-components': /node_modules[\\/]@ant-design/
 			}
 		}
 	},
 	tools: {
 		rspack: {
-		  plugins: [new CompressionPlugin({})]
+			plugins: [new CompressionPlugin({})]
 		}
 	}
 });

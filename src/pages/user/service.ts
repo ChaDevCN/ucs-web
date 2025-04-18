@@ -12,7 +12,9 @@ export interface User {
 	metadata?: object;
 	createTime: number;
 	updateTime: number;
-	menus: Menu[];
+	combined: {
+		menus: Menu[];
+	};
 }
 
 export interface AddUserProps {

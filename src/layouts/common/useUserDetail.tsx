@@ -33,8 +33,11 @@ export const useUserDetail = () => {
 		setLoading(true);
 
 		const {
-			data: { menus = [] }
+			data: {
+				combined: { menus = [] }
+			}
 		} = currentUserDetail;
+		console.log(menus);
 
 		replaceRoutes('*', [
 			...flatMenus(menus as Menu[]).map((menu: Menu) => {
