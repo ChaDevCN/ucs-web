@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/api/v2/*"
-  to = "https://manual.aixdb.cn/:splat"
+  to = "https://www.cm-energy.com/:splat"
   status = 200
   force = true
