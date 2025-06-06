@@ -61,7 +61,16 @@ const Manual = () => {
 						/>
 						<List
 							className="w-full h-full"
-							dataSource={res?.fileData || []}
+							dataSource={Array.from(
+								new Map(
+									(res?.fileData || []).map(
+										(item: { filename: string; fileurl: string }) => [
+											item.filename,
+											item
+										]
+									)
+								).values()
+							)}
 							pagination={{
 								pageSize: 10,
 								showSizeChanger: false
