@@ -10,9 +10,8 @@
   status = 200
   force = true
 
-
 [[redirects]]
   from = "/icms/upload/*"
-  to = "https://www.cm-energy.com/icms/upload:splat"
+  to = "https://www.cm-energy.com/icms/upload/:splat"
   status = 200
   force = true
