@@ -5,7 +5,13 @@ import { pluginLess } from '@rsbuild/plugin-less';
 import { pluginReact } from '@rsbuild/plugin-react';
 import CompressionPlugin from 'compression-webpack-plugin';
 const rootDirname = path.resolve(__dirname, '../../');
-const { PUBLIC_GOOGLE_CLIENT_ID, BASE_URL } = (import.meta as any).env;
+const {
+	PUBLIC_GOOGLE_CLIENT_ID,
+	BASE_URL,
+	MANUAL_URL,
+	RUNNING_ENV = 'production'
+} = (import.meta as any).env;
+
 const isProd = process.env.NODE_ENV === 'production';
 
 export default defineConfig({
@@ -27,6 +33,11 @@ export default defineConfig({
 			'/api/v1': {
 				target: process.env.PROXY_URL,
 				changeOrigin: true
+			},
+			'/api/v2': {
+				target: process.env.MANUAL_URL,
+				changeOrigin: true,
+				pathRewrite: (path) => path.replace(/^\/api\/v2/, '')
 			}
 		},
 		compress: true
@@ -34,7 +45,9 @@ export default defineConfig({
 	source: {
 		define: {
 			PUBLIC_GOOGLE_CLIENT_ID: `'${PUBLIC_GOOGLE_CLIENT_ID}'`,
-			BASE_URL: `'${BASE_URL}'`
+			BASE_URL: `'${BASE_URL}'`,
+			MANUAL_URL: `'${MANUAL_URL}'`,
+			RUNNING_ENV: `'${RUNNING_ENV}'`
 		}
 	},
 	performance: {

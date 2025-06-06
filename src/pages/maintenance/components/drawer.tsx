@@ -18,6 +18,9 @@ import {
 	updateMaintenance,
 	type MaintenanceDrawerType
 } from '../service';
+
+import AttachmentViewer from './AttachmentViewer';
+
 const LookDrawer = ({ id, data }: { id: number; data: Maintenance }) => {
 	const items: DescriptionsProps['items'] = [
 		{
@@ -67,23 +70,7 @@ const LookDrawer = ({ id, data }: { id: number; data: Maintenance }) => {
 		{
 			label: '附件',
 			span: 'filled',
-			children: (
-				<div className="space-y-2">
-					{data?.attachments && data?.attachments.length > 0
-						? data.attachments.map((item) => (
-								<div>
-									{item.type === 'image' && <Image src={item.url} />}
-									{item.type === 'pdf' && (
-										<a href={item.url} target="_blank" rel="noreferrer">
-											{item.url}
-										</a>
-									)}
-									{item.type === 'video' && <video src={item.url} controls />}
-								</div>
-						  ))
-						: '-'}
-				</div>
-			)
+			children: <AttachmentViewer attachments={data?.attachments || []} />
 		}
 	];
 	return <Descriptions bordered items={items} />;

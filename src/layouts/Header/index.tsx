@@ -107,7 +107,9 @@ const Header = () => {
 					>
 						{darkMode === 'dark' ? <SunMedium /> : <SunMoon />}
 					</div>
-					<div className='select-none'>{currentUser?.email || currentUser?.username}</div>
+					<div className="select-none">
+						{currentUser?.email || currentUser?.username}
+					</div>
 				</Space>
 			</div>
 		</AntHeader>

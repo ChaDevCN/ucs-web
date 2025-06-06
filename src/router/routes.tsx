@@ -4,57 +4,28 @@ import ErrorPage from '@/components/exception/500';
 
 import Layout from '@/layouts';
 import Login from '@/pages/login';
+import Manual from '@/pages/manual';
 
-export const routes: RouteObject[] = [
-	{
-		path: '/login',
-		Component: Login
-	},
-	{
-		path: '*',
-		Component: Layout,
-		errorElement: <ErrorPage />,
-		children: []
-	}
-
-	// {
-	// 	path: '/',
-	// 	Component: Layout,
-	// 	children: [
-	// 		{
-	// 			path: 'user',
-	// 			Component: User
-	// 		},
-	// 		{
-	// 			path: 'role',
-	// 			Component: Role
-	// 		},
-	// 		{
-	// 			path: 'menu',
-	// 			Component: Menu
-	// 		},
-	// 		{
-	// 			path: 'menu/:id',
-	// 			Component: EditMenu
-	// 		},
-	// 		{
-	// 			path: 'maintenance',
-	// 			Component: Maintenance
-	// 		},
-	// 		{
-	// 			path: 'feedback',
-	// 			Component: Feedback
-	// 		}
-	// 	]
-	// },
-	// {
-	// 	path: '/editor',
-	// 	Component: LayoutEditor,
-	// 	children: [
-	// 		{
-	// 			path: 'drafts/:type',
-	// 			Component: Drafts
-	// 		}
-	// 	]
-	// }
-];
+export const routes: RouteObject[] =
+	RUNNING_ENV !== 'manual'
+		? [
+				{
+					path: '/login',
+					Component: Login
+				},
+				{
+					path: '*',
+					Component: Layout,
+					errorElement: <ErrorPage />
+				},
+				{
+					path: '/manual',
+					Component: Manual
+				}
+		  ]
+		: [
+				{
+					path: '*',
+					Component: Manual
+				}
+		  ];
