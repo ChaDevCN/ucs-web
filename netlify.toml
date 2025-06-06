@@ -3,3 +3,16 @@
   to = "https://www.cm-energy.com/:splat"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/api/v1/*"
+  to = "https://ucs.aixdb.cn/api/v1/:splat"
+  status = 200
+  force = true
+
+
+[[redirects]]
+  from = "/icms/upload/*"
+  to = "https://www.cm-energy.com/icms/upload:splat"
+  status = 200
+  force = true
