@@ -63,12 +63,15 @@ const Manual = () => {
 							className="w-full h-full"
 							dataSource={Array.from(
 								new Map(
-									(res?.fileData || []).map(
-										(item: { filename: string; fileurl: string }) => [
+									(res?.fileData || [])
+										.slice()
+										.sort((a: any, b: any) =>
+											a.filename.trim().localeCompare(b.filename.trim())
+										)
+										.map((item: { filename: string; fileurl: string }) => [
 											item.filename.trim(),
 											item
-										]
-									)
+										])
 								).values()
 							)}
 							pagination={{
