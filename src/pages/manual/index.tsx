@@ -65,7 +65,7 @@ const Manual = () => {
 								new Map(
 									(res?.fileData || []).map(
 										(item: { filename: string; fileurl: string }) => [
-											item.filename,
+											item.filename.trim(),
 											item
 										]
 									)

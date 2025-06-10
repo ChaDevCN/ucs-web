@@ -35,7 +35,7 @@ export default defineConfig({
 				changeOrigin: true
 			},
 			'/api/v2': {
-				target: process.env.MANUAL_URL,
+				target: `https://www.cm-energy.com`,
 				changeOrigin: true,
 				pathRewrite: (path) => path.replace(/^\/api\/v2/, '')
 			}
