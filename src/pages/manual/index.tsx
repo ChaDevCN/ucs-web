@@ -11,13 +11,15 @@ const initData = [
 		lang: 'zh-cn',
 		title: '中文',
 		datasource: '/api/v2/data-zn.json',
-		button: '下载'
+		button: '下载',
+		base: '/zh-cn'
 	},
 	{
 		lang: 'en-us',
 		title: 'English',
 		datasource: '/api/v2/data.json',
-		button: 'Download'
+		button: 'Download',
+		base: '/en'
 	}
 ];
 const Manual = () => {
@@ -82,7 +84,13 @@ const Manual = () => {
 								<List.Item>
 									<div className="flex justify-between w-full">
 										{item.filename}
-										<a href={item.fileurl} download>
+										<a
+											href={`${
+												data.find((item) => item.lang === activeKey)?.base
+											}${item.fileurl}`}
+											download
+											target="_blank"
+										>
 											{data.find((item) => item.lang === activeKey)?.button}
 										</a>
 									</div>
